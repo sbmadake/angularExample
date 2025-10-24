@@ -1,0 +1,40 @@
+<div class="container">
+  <br>
+    <br>
+      <h2>Geeks Product List</h2>
+      <div class="table-responsive">
+        @if (products && products.length) {
+          <table class="table table-striped">
+            <thead class="thead-dark">
+              <tr>
+                <th>Product ID</th>
+                <th>Product Name</th>
+                <th>Category ID</th>
+                <th>Avilable Qty</th>
+                <th>Reorder Qty</th>
+                <th>Sales Rating</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (product of products; track product) {
+                <tr>
+                  <td>{{product.ProductID}}</td>
+                  <td>{{product.ProductName}}</td>
+                  <td>{{product.CategoryId}}</td>
+                  <td>{{product.AvilableQty}}</td>
+                  <td>{{product.ReorderQty}}</td>
+                  <td><app-product-details [SalesRating] = 'product.SalesRating'
+                    (GetLocalSales)= 'onGetLocalSalesReport($event)'
+                  ></app-product-details></td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        }
+        <div>
+          <h3>
+            {{messageFromNestedComponent}}
+          </h3>
+        </div>
+        <div>
+        </div>
